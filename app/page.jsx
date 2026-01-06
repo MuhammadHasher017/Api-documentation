@@ -42,7 +42,7 @@ export default function Home() {
 
         {/* Title */}
         <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient">
-          Doc PDF
+         Api Doc PDF
         </h1>
 
         {/* Subtitle */}
@@ -54,7 +54,7 @@ export default function Home() {
         </p>
 
         {/* CTA Button */}
-        <Link href="/atlas-api-doc">
+        <Link href="/api-doc">
           <button className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
             <span className="relative z-10 flex items-center">
               Get Started

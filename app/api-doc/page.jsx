@@ -351,61 +351,120 @@ export default function AtlasApiDoc() {
 
                         {/* JSON Editor Tab */}
                         {activeTab === 'editor' && (
-                            <div className="space-y-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        JSON Editor with Syntax Highlighting:
-                                    </label>
-                                    <div className="border border-gray-300 rounded-lg overflow-hidden">
-                                        <Editor
-                                            height="400px"
-                                            defaultLanguage="json"
-                                            value={editorValue}
-                                            onChange={handleEditorChange}
-                                            onMount={(editor, monaco) => {
-                                                editorRef.current = editor;
-
-                                                // Configure JSON validation
-                                                monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
-                                                    validate: true,
-                                                    allowComments: false,
-                                                    schemas: [],
-                                                    enableSchemaRequest: false,
-                                                });
-                                            }}
-                                            options={{
-                                                minimap: { enabled: false },
-                                                fontSize: 14,
-                                                lineNumbers: 'on',
-                                                roundedSelection: false,
-                                                scrollBeyondLastLine: false,
-                                                automaticLayout: true,
-                                                tabSize: 2,
-                                                insertSpaces: true,
-                                                wordWrap: 'on',
-                                                formatOnPaste: true,
-                                                formatOnType: true,
-                                                folding: true,
-                                                bracketPairColorization: { enabled: true },
-                                                suggest: {
-                                                    showKeywords: false,
-                                                    showSnippets: false,
-                                                },
-                                            }}
-                                            theme="vs-dark"
-                                        />
+                            <div className="space-y-6 animate-in fade-in-50 duration-300">
+                                <div className="relative">
+                                    <div className="flex items-center justify-between mb-4">
+                                        <label className="block text-sm font-bold text-slate-800">
+                                            Advanced JSON Editor
+                                        </label>
+                                        <div className="flex items-center space-x-2 text-xs text-slate-500">
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                                            </svg>
+                                            <span>Drag to resize</span>
+                                        </div>
                                     </div>
-                                    <p className="mt-2 text-xs text-gray-500">
-                                        Full-featured JSON editor with syntax highlighting, error detection, and auto-formatting.
+                                    
+                                    {/* Editor Container with Modern Styling */}
+                                    <div className="relative group">
+                                        <div 
+                                            className="border-2 border-slate-200 rounded-2xl overflow-hidden shadow-lg transition-all duration-200 group-hover:border-blue-300 group-hover:shadow-xl"
+                                            style={{ 
+                                                background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
+                                                minHeight: `${editorHeight}px`
+                                            }}
+                                        >
+                                            <div className="bg-slate-800 px-4 py-3 flex items-center justify-between border-b border-slate-600">
+                                                <div className="flex items-center space-x-3">
+                                                    <div className="flex space-x-1.5">
+                                                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                                                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                                                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                                                    </div>
+                                                    <span className="text-slate-300 text-sm font-medium">config.json</span>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <div className={`w-2 h-2 rounded-full ${isValidJson ? 'bg-green-400' : 'bg-red-400'} animate-pulse`}></div>
+                                                    <span className="text-xs text-slate-400">
+                                                        {isValidJson ? 'Valid JSON' : 'Invalid JSON'}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            
+                                            <Editor
+                                                height={`${editorHeight - 50}px`}
+                                                defaultLanguage="json"
+                                                value={editorValue}
+                                                onChange={handleEditorChange}
+                                                onMount={(editor, monaco) => {
+                                                    editorRef.current = editor;
+
+                                                    // Configure JSON validation
+                                                    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+                                                        validate: true,
+                                                        allowComments: false,
+                                                        schemas: [],
+                                                        enableSchemaRequest: false,
+                                                    });
+                                                }}
+                                                options={{
+                                                    minimap: { enabled: true },
+                                                    fontSize: 14,
+                                                    lineNumbers: 'on',
+                                                    roundedSelection: false,
+                                                    scrollBeyondLastLine: false,
+                                                    automaticLayout: true,
+                                                    tabSize: 2,
+                                                    insertSpaces: true,
+                                                    wordWrap: 'on',
+                                                    formatOnPaste: true,
+                                                    formatOnType: true,
+                                                    folding: true,
+                                                    bracketPairColorization: { enabled: true },
+                                                    suggest: {
+                                                        showKeywords: false,
+                                                        showSnippets: false,
+                                                    },
+                                                    padding: { top: 16, bottom: 16 },
+                                                    smoothScrolling: true,
+                                                    cursorBlinking: 'smooth',
+                                                    renderLineHighlight: 'gutter',
+                                                }}
+                                                theme="vs-dark"
+                                            />
+                                        </div>
+                                        
+                                        {/* Resize Handle */}
+                                        <div
+                                            ref={resizeRef}
+                                            onMouseDown={handleMouseDown}
+                                            className={`absolute bottom-0 left-0 right-0 h-2 cursor-ns-resize group/resize ${
+                                                isResizing ? 'bg-blue-500' : 'bg-transparent hover:bg-blue-400/20'
+                                            } transition-colors duration-200 flex items-center justify-center`}
+                                        >
+                                            <div className="w-12 h-1 bg-slate-400 rounded-full group-hover/resize:bg-blue-500 transition-colors duration-200"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <p className="mt-3 text-xs text-slate-500 flex items-center space-x-2">
+                                        <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                        </svg>
+                                        <span>Professional JSON editor with syntax highlighting, real-time validation, and intelligent auto-completion</span>
                                     </p>
                                 </div>
+                                
+                                {/* Action Buttons */}
                                 {editorValue && (
-                                    <div className="flex gap-2">
+                                    <div className="flex flex-wrap gap-3 animate-in slide-in-from-bottom-2 duration-300">
                                         <button
                                             onClick={validateAndSetJsonText}
-                                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium"
+                                            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 text-sm font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center space-x-2"
                                         >
-                                            ✓ Validate JSON
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            <span>Validate JSON</span>
                                         </button>
                                         <button
                                             onClick={() => {
@@ -413,41 +472,65 @@ export default function AtlasApiDoc() {
                                                     editorRef.current.getAction('editor.action.formatDocument').run();
                                                 }
                                             }}
-                                            className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors text-sm font-medium"
+                                            className="px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl hover:from-purple-700 hover:to-purple-800 transition-all duration-200 text-sm font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center space-x-2"
                                         >
-                                            🎨 Format JSON
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2a2 2 0 002-2V5a2 2 0 00-2-2z" />
+                                            </svg>
+                                            <span>Format JSON</span>
                                         </button>
                                         <button
                                             onClick={() => setEditorValue('')}
-                                            className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors text-sm font-medium"
+                                            className="px-6 py-3 bg-gradient-to-r from-slate-500 to-slate-600 text-white rounded-xl hover:from-slate-600 hover:to-slate-700 transition-all duration-200 text-sm font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center space-x-2"
                                         >
-                                            Clear
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                            </svg>
+                                            <span>Clear</span>
                                         </button>
                                     </div>
                                 )}
+                                
                                 {!editorValue && (
-                                    <button
-                                        onClick={() => {
-                                            const sampleJson = JSON.stringify(apiDocConfig, null, 2);
-                                            setEditorValue(sampleJson);
-                                            setCustomConfig(apiDocConfig);
-                                            setIsValidJson(true);
-                                        }}
-                                        className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors text-sm font-medium"
-                                    >
-                                        📝 Load Sample JSON
-                                    </button>
+                                    <div className="text-center py-8 animate-in fade-in-50 duration-500">
+                                        <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                            </svg>
+                                        </div>
+                                        <h3 className="text-lg font-bold text-slate-800 mb-2">Ready to Start</h3>
+                                        <p className="text-slate-600 mb-6 max-w-md mx-auto">
+                                            Load a sample configuration to get started, or begin writing your own JSON structure
+                                        </p>
+                                        <button
+                                            onClick={() => {
+                                                const sampleJson = JSON.stringify(apiDocConfig, null, 2);
+                                                setEditorValue(sampleJson);
+                                                setCustomConfig(apiDocConfig);
+                                                setIsValidJson(true);
+                                            }}
+                                            className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-200 text-sm font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center space-x-3 mx-auto"
+                                        >
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                            </svg>
+                                            <span>Load Sample Configuration</span>
+                                        </button>
+                                    </div>
                                 )}
                             </div>
                         )}
 
                         {/* Action Buttons */}
-                        <div className="flex flex-wrap gap-3 mt-6 p-4 bg-gray-50 rounded-lg border-t">
+                        <div className="flex flex-wrap gap-4 mt-8 p-6 bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl border border-slate-200">
                             <button
                                 onClick={() => setShowJsonStructure(!showJsonStructure)}
-                                className="px-4 py-2 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors text-sm font-medium"
+                                className="px-5 py-2.5 bg-white text-slate-700 rounded-xl hover:bg-slate-50 transition-all duration-200 text-sm font-semibold shadow-sm hover:shadow-md border border-slate-200 flex items-center space-x-2"
                             >
-                                {showJsonStructure ? 'Hide' : 'Show'} JSON Structure
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                <span>{showJsonStructure ? 'Hide' : 'Show'} JSON Structure</span>
                             </button>
                             <button
                                 onClick={() => {
@@ -460,67 +543,84 @@ export default function AtlasApiDoc() {
                                     linkElement.setAttribute('download', exportFileDefaultName);
                                     linkElement.click();
                                 }}
-                                className="px-4 py-2 bg-purple-100 text-purple-700 rounded-md hover:bg-purple-200 transition-colors text-sm font-medium"
+                                className="px-5 py-2.5 bg-white text-purple-700 rounded-xl hover:bg-purple-50 transition-all duration-200 text-sm font-semibold shadow-sm hover:shadow-md border border-purple-200 flex items-center space-x-2"
                             >
-                                ⬇️ Download Sample
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                <span>Download Sample</span>
                             </button>
                             {(customConfig || editorValue) && (
                                 <button
                                     onClick={resetToDefault}
-                                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors text-sm font-medium"
+                                    className="px-5 py-2.5 bg-white text-slate-600 rounded-xl hover:bg-slate-50 transition-all duration-200 text-sm font-semibold shadow-sm hover:shadow-md border border-slate-200 flex items-center space-x-2"
                                 >
-                                    Reset to Default
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                    </svg>
+                                    <span>Reset to Default</span>
                                 </button>
                             )}
                             
                             {/* PDF Generation Buttons - Integrated */}
-                            <div className="flex gap-2 ml-auto">
+                            <div className="flex gap-3 ml-auto">
                                 <button
                                     onClick={handleDownload}
                                     disabled={!isValidJson || loading}
-                                    className={`px-6 py-2 rounded-md font-medium text-sm transition-colors ${
+                                    className={`px-8 py-3 rounded-xl font-bold text-sm transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center space-x-2 ${
                                         isValidJson && !loading
-                                            ? 'bg-green-600 text-white hover:bg-green-700'
-                                            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                            ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700'
+                                            : 'bg-slate-300 text-slate-500 cursor-not-allowed shadow-none transform-none'
                                     }`}
                                 >
                                     {loading ? (
-                                        <div className="flex items-center">
-                                            <svg className="animate-spin h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24">
+                                        <>
+                                            <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
                                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                             </svg>
-                                            Generating...
-                                        </div>
+                                            <span>Generating...</span>
+                                        </>
                                     ) : (
-                                        '📄 Download PDF'
+                                        <>
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                            </svg>
+                                            <span>Download PDF</span>
+                                        </>
                                     )}
                                 </button>
                                 <button
                                     onClick={handlePreview}
                                     disabled={!isValidJson || loading}
-                                    className={`px-6 py-2 rounded-md font-medium text-sm transition-colors ${
+                                    className={`px-8 py-3 rounded-xl font-bold text-sm transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center space-x-2 ${
                                         isValidJson && !loading
-                                            ? 'bg-blue-600 text-white hover:bg-blue-700'
-                                            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                            ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700'
+                                            : 'bg-slate-300 text-slate-500 cursor-not-allowed shadow-none transform-none'
                                     }`}
                                 >
-                                    👁️ Preview PDF
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                    <span>Preview PDF</span>
                                 </button>
                             </div>
                         </div>
                         
                         {/* Status Message */}
                         {!isValidJson && (
-                            <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                                <div className="flex items-center">
-                                    <svg className="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                                    </svg>
-                                    <p className="text-yellow-800 text-sm">
+                            <div className="mt-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl animate-in slide-in-from-bottom-2 duration-300">
+                                <div className="flex items-center space-x-3">
+                                    <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg className="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                                        </svg>
+                                    </div>
+                                    <p className="text-amber-800 text-sm font-medium">
                                         {uploadedFileName || editorValue ? 
-                                            'Please validate your JSON to enable PDF generation' : 
-                                            'Upload a JSON file or use the editor to enable PDF generation'
+                                            'Please validate your JSON configuration to enable PDF generation' : 
+                                            'Upload a JSON file or use the editor to get started with PDF generation'
                                         }
                                     </p>
                                 </div>
