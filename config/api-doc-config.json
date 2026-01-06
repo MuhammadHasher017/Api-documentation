@@ -1,0 +1,1013 @@
+{
+  "metadata": {
+    "title": "DomoData API Documentation",
+    "author": "DomoData Team",
+    "subject": "DomoData API Reference",
+    "keywords": "API, DomoData, REST, Documentation",
+    "version": "1.0",
+    "filename": "domodata-api-documentation.pdf"
+  },
+  "api": {
+    "baseUrl": "https://api.domodata.com/",
+    "version": "v1",
+    "protocol": "HTTPS",
+    "authMethod": "API Key (Header-based)",
+    "authHeader": "x-api-key"
+  },
+  "colors": {
+    "primary": "#1e40af",
+    "primaryDark": "#1e293b",
+    "secondary": "#2563eb",
+    "success": "#10b981",
+    "warning": "#d97706",
+    "error": "#dc2626"
+  },
+  "pages": [
+    {
+      "id": "overview",
+      "sections": [
+        {
+          "type": "header",
+          "title": "DomoData API Documentation"
+        },
+        {
+          "type": "infoBox",
+          "title": "API Information",
+          "items": [
+            { "label": "Base URL", "value": "{api.baseUrl}" },
+            { "label": "API Version", "value": "{api.version}" },
+            { "label": "Protocol", "value": "{api.protocol}" }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Authentication",
+          "content": "All API requests require authentication using an API key. Include your API key in the request header.",
+          "subsections": [
+            {
+              "type": "infoBox",
+              "items": [
+                { "label": "Method", "value": "{api.authMethod}" },
+                { "label": "Header Name", "value": "{api.authHeader}" }
+              ]
+            },
+            {
+              "type": "securityBadge",
+              "text": "Keep your API key secure and never share it publicly."
+            },
+            {
+              "type": "subsection",
+              "title": "Example Request Header:",
+              "content": {
+                "type": "codeBlock",
+                "code": "x-api-key: your_api_key_here"
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Common Parameters",
+          "content": "Most endpoints support these common parameters:",
+          "table": {
+            "headers": ["Parameter", "Type", "Description"],
+            "columnWidths": [0.3, 0.25, 0.45],
+            "rows": [
+              ["Ids", "array[integer]", "Filter by specific IDs"],
+              ["SortClauses", "string", "Sort order for results"]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "customer-endpoints",
+      "sections": [
+        {
+          "type": "section",
+          "title": "Customer & Region Endpoints"
+        },
+        {
+          "type": "section",
+          "title": "Get Customers",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetCustomers",
+              "description": "Retrieve customer information with optional filtering"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["Ids", "array[integer]", "Filter by customer IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Regions",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetRegions",
+              "description": "Retrieve region information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["Ids", "array[integer]", "Filter by region IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Users",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetUsers",
+              "description": "Retrieve user information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["CustomerIds", "array[integer]", "Filter by customer IDs"],
+                  ["Ids", "array[integer]", "Filter by user IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "job-endpoints",
+      "sections": [
+        {
+          "type": "section",
+          "title": "Job Management Endpoints"
+        },
+        {
+          "type": "section",
+          "title": "Get Jobs",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetJobs",
+              "description": "Retrieve job information with filtering options"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["Status", "string", "Filter by job status"],
+                  ["CustomerIds", "array[integer]", "Filter by customer IDs"],
+                  ["Ids", "array[integer]", "Filter by job IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Job Stages",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetJobStages",
+              "description": "Retrieve job stage information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["JobIds", "array[integer]", "Filter by job IDs"],
+                  ["Ids", "array[integer]", "Filter by stage IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Job Statuses",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetJobStatuses",
+              "description": "Retrieve available job statuses"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["Ids", "array[integer]", "Filter by status IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Job Wellsite Statuses",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetJobWellsiteStatuses",
+              "description": "Retrieve wellsite status information for jobs"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["JobIds", "array[integer]", "Filter by job IDs"],
+                  ["Ids", "array[integer]", "Filter by status IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Crews",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetCrews",
+              "description": "Retrieve crew information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["Ids", "array[integer]", "Filter by crew IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "purchase-order-endpoints",
+      "sections": [
+        {
+          "type": "section",
+          "title": "Purchase Order Endpoints"
+        },
+        {
+          "type": "section",
+          "title": "Get Job Purchase Orders",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetJobPurchaseOrders",
+              "description": "Retrieve purchase order information for jobs"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["JobIds", "array[integer]", "Filter by job IDs"],
+                  ["ProductIds", "array[integer]", "Filter by product IDs"],
+                  ["VendorIds", "array[integer]", "Filter by vendor IDs"],
+                  ["Ids", "array[integer]", "Filter by PO IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Job Purchase Order Details",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetJobPurchaseOrderDetails",
+              "description": "Retrieve detailed purchase order information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["JobPOIds", "array[integer]", "Filter by job PO IDs"],
+                  ["PlantIds", "array[integer]", "Filter by plant IDs"],
+                  ["BucketIds", "array[integer]", "Filter by bucket IDs"],
+                  ["Ids", "array[integer]", "Filter by detail IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "product-plant-endpoints",
+      "sections": [
+        {
+          "type": "section",
+          "title": "Product & Plant Endpoints"
+        },
+        {
+          "type": "section",
+          "title": "Get Products",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetProducts",
+              "description": "Retrieve product information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["Ids", "array[integer]", "Filter by product IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Plants",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetPlants",
+              "description": "Retrieve plant information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["ApprovalStatusIds", "array[integer]", "Filter by approval status"],
+                  ["Ids", "array[integer]", "Filter by plant IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Approval Statuses",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetApprovalStatuses",
+              "description": "Retrieve approval status options"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["Ids", "array[integer]", "Filter by status IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Buckets",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetBuckets",
+              "description": "Retrieve bucket information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["JobIds", "array[integer]", "Filter by job IDs"],
+                  ["ProductIds", "array[integer]", "Filter by product IDs"],
+                  ["Ids", "array[integer]", "Filter by bucket IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vendor-hauler-endpoints",
+      "sections": [
+        {
+          "type": "section",
+          "title": "Vendor & Hauler Endpoints"
+        },
+        {
+          "type": "section",
+          "title": "Get Vendors",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetVendors",
+              "description": "Retrieve vendor information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["StatusIds", "array[integer]", "Filter by status IDs"],
+                  ["Ids", "array[integer]", "Filter by vendor IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Haulers",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetHaulers",
+              "description": "Retrieve hauler information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["Ids", "array[integer]", "Filter by hauler IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Drivers",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetDrivers",
+              "description": "Retrieve driver information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["HaulerIds", "array[integer]", "Filter by hauler IDs"],
+                  ["Ids", "array[integer]", "Filter by driver IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Trucks",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetTrucks",
+              "description": "Retrieve truck information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["HaulerIds", "array[integer]", "Filter by hauler IDs"],
+                  ["Ids", "array[integer]", "Filter by truck IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Truck Driver Mappings",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetTruckDriverMappings",
+              "description": "Retrieve truck-driver assignment relationships"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["TruckIds", "array[integer]", "Filter by truck IDs"],
+                  ["DriverIds", "array[integer]", "Filter by driver IDs"],
+                  ["Ids", "array[integer]", "Filter by mapping IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "load-bol-endpoints",
+      "sections": [
+        {
+          "type": "section",
+          "title": "Load & BOL Endpoints"
+        },
+        {
+          "type": "section",
+          "title": "Get Loads",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetLoads",
+              "description": "Retrieve load information with comprehensive filtering"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["LoadStatusIds", "array[integer]", "Filter by load status"],
+                  ["AcceptedDriverIds", "array[integer]", "Filter by accepted driver"],
+                  ["JobIds", "array[integer]", "Filter by job IDs"],
+                  ["CustomerIds", "array[integer]", "Filter by customer IDs"],
+                  ["PlantIds", "array[integer]", "Filter by plant IDs"],
+                  ["ProductIds", "array[integer]", "Filter by product IDs"],
+                  ["TruckIds", "array[integer]", "Filter by truck IDs"],
+                  ["JobPOIds", "array[integer]", "Filter by job PO IDs"],
+                  ["Ids", "array[integer]", "Filter by load IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Load Statuses",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetLoadStatuses",
+              "description": "Retrieve available load statuses"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["Ids", "array[integer]", "Filter by status IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get BOLs",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetBols",
+              "description": "Retrieve Bill of Lading information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "helpText": "BOL endpoint supports extensive filtering options",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["LoadIds", "array[integer]", "Filter by load IDs"],
+                  ["JobIds", "array[integer]", "Filter by job IDs"],
+                  ["JobPOIds", "array[integer]", "Filter by job PO IDs"],
+                  ["PlantIds", "array[integer]", "Filter by plant IDs"],
+                  ["CustomerIds", "array[integer]", "Filter by customer IDs"],
+                  ["ProductIds", "array[integer]", "Filter by product IDs"],
+                  ["TruckIds", "array[integer]", "Filter by truck IDs"],
+                  ["HaulerIds", "array[integer]", "Filter by hauler IDs"],
+                  ["DriverIds", "array[integer]", "Filter by driver IDs"],
+                  ["BolStatusIds", "array[integer]", "Filter by BOL status"],
+                  ["Ids", "array[integer]", "Filter by BOL IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get BOL Statuses",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetBolStatuses",
+              "description": "Retrieve available BOL statuses"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["Ids", "array[integer]", "Filter by status IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "load-management-endpoints",
+      "sections": [
+        {
+          "type": "section",
+          "title": "Load Management Endpoints"
+        },
+        {
+          "type": "section",
+          "title": "Get Load Offers",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetLoadOffers",
+              "description": "Retrieve load offer information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["OfferStatus", "string", "Filter by offer status"],
+                  ["LoadIds", "array[integer]", "Filter by load IDs"],
+                  ["JobIds", "array[integer]", "Filter by job IDs"],
+                  ["HaulerIds", "array[integer]", "Filter by hauler IDs"],
+                  ["PlantIds", "array[integer]", "Filter by plant IDs"],
+                  ["Ids", "array[integer]", "Filter by offer IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Offer Statuses",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetOfferStatuses",
+              "description": "Retrieve available offer statuses"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["Ids", "array[integer]", "Filter by status IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Load Redirections",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetLoadRedirections",
+              "description": "Retrieve load redirection information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "helpText": "Track changes between original and new destinations",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["OriginalJobIds", "array[integer]", "Original job IDs"],
+                  ["LoadIds", "array[integer]", "Filter by load IDs"],
+                  ["NewJobIds", "array[integer]", "New job IDs"],
+                  ["OriginalJobPOIds", "array[integer]", "Original PO IDs"],
+                  ["NewJobPOIds", "array[integer]", "New PO IDs"],
+                  ["OriginalPlantIds", "array[integer]", "Original plant IDs"],
+                  ["NewPlantIds", "array[integer]", "New plant IDs"],
+                  ["Ids", "array[integer]", "Redirection IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Redirection Statuses",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetRedirectionStatuses",
+              "description": "Retrieve available redirection statuses"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["Ids", "array[integer]", "Filter by status IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Pause Statuses",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetPauseStatuses",
+              "description": "Retrieve available pause statuses"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["Ids", "array[integer]", "Filter by status IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Get Reasons",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetReasons",
+              "description": "Retrieve reason codes and descriptions"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": ["Parameter", "Type", "Description"],
+                "columnWidths": [0.25, 0.25, 0.5],
+                "rows": [
+                  ["ReasonDescription", "string", "Filter by description text"],
+                  ["Ids", "array[integer]", "Filter by reason IDs"],
+                  ["SortClauses", "string", "Specify sort order"]
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hauler-endpoints",
+      "sections": [
+        {
+          "type": "section",
+          "title": "Hauler Management Endpoints"
+        },
+        {
+          "type": "section",
+          "title": "Get Driver Schedule",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/Hauler/GetDriverSchedule",
+              "description": "Retrieve driver schedule information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "helpText": "This endpoint does not accept query parameters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "best-practices",
+      "sections": [
+        {
+          "type": "section",
+          "title": "Best Practices",
+          "practices": [
+            {
+              "title": "Use Specific Filters",
+              "content": "Use specific ID filters (like JobIds, LoadIds) instead of retrieving all records for better performance."
+            },
+            {
+              "title": "Implement Pagination",
+              "content": "Use SortClauses parameter to implement consistent pagination across requests."
+            },
+            {
+              "title": "Secure Your API Key",
+              "content": "Never expose your API key in client-side code or public repositories."
+            },
+            {
+              "title": "Handle Array Parameters",
+              "content": "Array parameters should be sent as multiple query parameters with the same name (e.g., ?Ids=1&Ids=2&Ids=3)."
+            },
+            {
+              "title": "Monitor Rate Limits",
+              "content": "Implement exponential backoff when encountering rate limit responses."
+            }
+          ]
+        },
+        {
+          "type": "infoBox",
+          "variant": "blue",
+          "title": "Common Response Codes",
+          "list": {
+            "type": "bullet",
+            "items": [
+              "200 - Success: Request completed successfully",
+              "400 - Bad Request: Invalid parameters or request format",
+              "401 - Unauthorized: Missing or invalid API key",
+              "404 - Not Found: Endpoint or resource not found",
+              "429 - Too Many Requests: Rate limit exceeded",
+              "500 - Server Error: Internal server issue"
+            ]
+          }
+        },
+        {
+          "type": "infoBox",
+          "variant": "green",
+          "title": "Need Help?",
+          "content": "For additional support:",
+          "list": {
+            "type": "bullet",
+            "items": [
+              "Contact your system administrator for API access",
+              "Ensure all array parameters are properly formatted",
+              "Check parameter types match the specification",
+              "Verify your API key is included in all requests",
+              "Review filter combinations for optimal queries"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

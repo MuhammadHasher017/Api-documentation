@@ -1,0 +1,173 @@
+{
+  "metadata": {
+    "title": "Simple API Guide",
+    "author": "Your Company",
+    "subject": "API Documentation",
+    "keywords": "API, Guide",
+    "version": "1.0",
+    "filename": "simple-api-guide.pdf"
+  },
+  "api": {
+    "baseUrl": "https://api.yourcompany.com/",
+    "version": "v1"
+  },
+  "colors": {
+    "primary": "#3b82f6",
+    "primaryDark": "#1e3a8a",
+    "secondary": "#60a5fa",
+    "success": "#10b981",
+    "warning": "#f59e0b",
+    "error": "#ef4444"
+  },
+  "pages": [
+    {
+      "id": "introduction",
+      "sections": [
+        {
+          "type": "header",
+          "title": "Simple API Guide"
+        },
+        {
+          "type": "infoBox",
+          "title": "Quick Start",
+          "items": [
+            { "label": "Base URL", "value": "{api.baseUrl}" },
+            { "label": "Version", "value": "{api.version}" }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Introduction",
+          "content": "This is a simple example showing how to create a PDF from JSON configuration. The base URL is {api.baseUrl} and we're currently on version {api.version}."
+        },
+        {
+          "type": "section",
+          "title": "Getting Started",
+          "content": "Follow these simple steps:",
+          "list": {
+            "type": "numbered",
+            "items": [
+              "Install the required dependencies",
+              "Copy the PDF generator files to your project",
+              "Create your JSON configuration",
+              "Call the downloadPDF function with your config"
+            ]
+          }
+        },
+        {
+          "type": "infoBox",
+          "variant": "blue",
+          "title": "Important Notes",
+          "list": {
+            "type": "bullet",
+            "items": [
+              "All configurations are in JSON format",
+              "You can use variables like {api.baseUrl} anywhere",
+              "Multiple pages are supported",
+              "Various section types are available"
+            ]
+          }
+        },
+        {
+          "type": "section",
+          "title": "Available Endpoints",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/users",
+              "description": "Get all users"
+            },
+            {
+              "method": "POST",
+              "path": "/api/users",
+              "description": "Create a new user"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "sections": [
+        {
+          "type": "section",
+          "title": "Parameter Details",
+          "helpText": "Here are the available parameters:",
+          "table": {
+            "headers": ["Parameter", "Type", "Description"],
+            "columnWidths": [0.25, 0.25, 0.5],
+            "rows": [
+              ["id", "integer", "Unique identifier"],
+              ["name", "string", "User's full name"],
+              ["email", "string", "User's email address"],
+              ["active", "boolean", "Whether user is active"]
+            ]
+          }
+        },
+        {
+          "type": "section",
+          "title": "Example Request",
+          "helpText": "Here's how to make a basic request:",
+          "codeBlock": {
+            "code": "GET {api.baseUrl}api/users\nHeaders:\nAuthorization: Bearer your_token_here\nContent-Type: application/json"
+          }
+        },
+        {
+          "type": "section",
+          "title": "Response",
+          "content": "Successful requests return the following:",
+          "responseBox": {
+            "code": "200 - Success",
+            "description": "The request was successful and user data is returned"
+          }
+        },
+        {
+          "type": "infoBox",
+          "variant": "red",
+          "title": "Error Codes",
+          "list": {
+            "type": "bullet",
+            "items": [
+              "400 - Bad Request: Invalid parameters",
+              "401 - Unauthorized: Missing or invalid token",
+              "404 - Not Found: Resource doesn't exist",
+              "500 - Server Error: Internal server problem"
+            ]
+          }
+        },
+        {
+          "type": "section",
+          "title": "Best Practices",
+          "practices": [
+            {
+              "title": "Use HTTPS",
+              "content": "Always use HTTPS for secure communication"
+            },
+            {
+              "title": "Handle Errors",
+              "content": "Implement proper error handling in your application"
+            },
+            {
+              "title": "Rate Limiting",
+              "content": "Be aware of rate limits and implement backoff strategies"
+            }
+          ]
+        },
+        {
+          "type": "infoBox",
+          "variant": "green",
+          "title": "Support",
+          "content": "Need help? Contact us:",
+          "list": {
+            "type": "bullet",
+            "items": [
+              "Email: support@yourcompany.com",
+              "Documentation: docs.yourcompany.com",
+              "Status Page: status.yourcompany.com"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
