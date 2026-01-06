@@ -157,6 +157,57 @@
         },
         {
           "type": "section",
+          "title": "Get Users",
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/DomoData/GetUsers",
+              "description": "Retrieve user information"
+            }
+          ],
+          "subsections": [
+            {
+              "type": "section",
+              "title": "Query Parameters",
+              "table": {
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
+                "rows": [
+                  [
+                    "CustomerIds",
+                    "array[integer]",
+                    "Filter by customer IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by user IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "region ",
+      "sections": [
+        {
+          "type": "section",
           "title": "Get Regions",
           "endpoints": [
             {
@@ -198,12 +249,12 @@
         },
         {
           "type": "section",
-          "title": "Get Users",
+          "title": "Get Crews",
           "endpoints": [
             {
               "method": "GET",
-              "path": "/api/DomoData/GetUsers",
-              "description": "Retrieve user information"
+              "path": "/api/DomoData/GetCrews",
+              "description": "Retrieve crew information"
             }
           ],
           "subsections": [
@@ -223,14 +274,9 @@
                 ],
                 "rows": [
                   [
-                    "CustomerIds",
-                    "array[integer]",
-                    "Filter by customer IDs"
-                  ],
-                  [
                     "Ids",
                     "array[integer]",
-                    "Filter by user IDs"
+                    "Filter by crew IDs"
                   ],
                   [
                     "SortClauses",
@@ -425,47 +471,6 @@
                     "Ids",
                     "array[integer]",
                     "Filter by status IDs"
-                  ],
-                  [
-                    "SortClauses",
-                    "string",
-                    "Specify sort order"
-                  ]
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "type": "section",
-          "title": "Get Crews",
-          "endpoints": [
-            {
-              "method": "GET",
-              "path": "/api/DomoData/GetCrews",
-              "description": "Retrieve crew information"
-            }
-          ],
-          "subsections": [
-            {
-              "type": "section",
-              "title": "Query Parameters",
-              "table": {
-                "headers": [
-                  "Parameter",
-                  "Type",
-                  "Description"
-                ],
-                "columnWidths": [
-                  0.25,
-                  0.25,
-                  0.5
-                ],
-                "rows": [
-                  [
-                    "Ids",
-                    "array[integer]",
-                    "Filter by crew IDs"
                   ],
                   [
                     "SortClauses",
@@ -685,7 +690,13 @@
               }
             }
           ]
-        },
+        }
+        
+      ]
+    },
+    {
+      "id": "some else",
+      "sections":[
         {
           "type": "section",
           "title": "Get Approval Statuses",
@@ -783,10 +794,6 @@
     {
       "id": "vendor-hauler-endpoints",
       "sections": [
-        {
-          "type": "section",
-          "title": "Vendor & Hauler Endpoints"
-        },
         {
           "type": "section",
           "title": "Get Vendors",
