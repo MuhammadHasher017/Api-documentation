@@ -24,8 +24,11 @@ export default function AtlasApiDoc() {
     const [activeTab, setActiveTab] = useState('upload'); // 'upload' or 'editor'
     const [uploadedFileName, setUploadedFileName] = useState('');
     const [isValidJson, setIsValidJson] = useState(false);
+    const [editorHeight, setEditorHeight] = useState(400);
+    const [isResizing, setIsResizing] = useState(false);
     const fileInputRef = useRef(null);
     const editorRef = useRef(null);
+    const resizeRef = useRef(null);
 
     const handleDownload = async () => {
         try {
@@ -174,63 +177,117 @@ export default function AtlasApiDoc() {
         }
     };
 
+    // Handle editor resizing
+    const handleMouseDown = (e) => {
+        setIsResizing(true);
+        const startY = e.clientY;
+        const startHeight = editorHeight;
+
+        const handleMouseMove = (e) => {
+            const deltaY = e.clientY - startY;
+            const newHeight = Math.max(200, Math.min(800, startHeight + deltaY));
+            setEditorHeight(newHeight);
+        };
+
+        const handleMouseUp = () => {
+            setIsResizing(false);
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+    };
+
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-            <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+            <div className="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                        Atlas API Documentation
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl mb-6 shadow-lg">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <h1 className="text-5xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-4">
+                        API Documentation
                     </h1>
-                    <p className="text-lg text-gray-600">
-                        Generate comprehensive API documentation PDF
+                    <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                        Generate comprehensive, professional API documentation with our advanced JSON-powered generator
                     </p>
                 </div>
 
                 {error && (
-                    <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-400 rounded-lg">
+                    <div className="mb-8 p-5 bg-gradient-to-r from-red-50 to-rose-50 border border-red-200 rounded-2xl shadow-sm animate-in slide-in-from-top-2 duration-300">
                         <div className="flex">
-                            <svg className="w-5 h-5 text-red-400 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <div>
-                                <h3 className="text-sm font-medium text-red-800">JSON Validation Error</h3>
-                                <p className="text-red-700 text-sm mt-1 whitespace-pre-wrap">{error}</p>
+                            <div className="flex-shrink-0">
+                                <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                                    <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div className="ml-4">
+                                <h3 className="text-sm font-semibold text-red-800 mb-1">JSON Validation Error</h3>
+                                <p className="text-red-700 text-sm whitespace-pre-wrap leading-relaxed">{error}</p>
                             </div>
                         </div>
                     </div>
                 )}
 
                 {/* Modern Upload/Editor Section */}
-                <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden mb-8">
+                <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-white/20 overflow-hidden mb-8 transition-all duration-300 hover:shadow-2xl">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-50 to-purple-50 px-6 py-4 border-b border-gray-200">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                            📄 JSON Configuration
-                        </h3>
-                        <p className="text-sm text-gray-600">
-                            Upload a JSON file or use the editor to create your API documentation
+                    <div className="bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 px-8 py-6">
+                        <div className="flex items-center space-x-3 mb-3">
+                            <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <h3 className="text-xl font-bold text-white">
+                                JSON Configuration Studio
+                            </h3>
+                        </div>
+                        <p className="text-blue-100 leading-relaxed">
+                            Upload a JSON file or use our advanced editor to create your API documentation with real-time validation
                         </p>
                     </div>
 
                     {/* Tab Navigation */}
-                    <div className="flex mb-4 border-b px-6">
+                    <div className="flex bg-slate-50 border-b border-slate-200">
                         <button
                             onClick={() => setActiveTab('upload')}
-                            className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${activeTab === 'upload'
-                                    ? 'border-blue-500 text-blue-600'
-                                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                            className={`px-6 py-4 font-semibold text-sm transition-all duration-200 relative ${activeTab === 'upload'
+                                    ? 'text-blue-700 bg-white shadow-sm'
+                                    : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100'
                                 }`}
                         >
-                            📤 Upload File
+                            <div className="flex items-center space-x-2">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                </svg>
+                                <span>Upload File</span>
+                            </div>
+                            {activeTab === 'upload' && (
+                                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                            )}
                         </button>
                         <button
                             onClick={() => setActiveTab('editor')}
-                            className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${activeTab === 'editor'
-                                    ? 'border-blue-500 text-blue-600'
-                                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                            className={`px-6 py-4 font-semibold text-sm transition-all duration-200 relative ${activeTab === 'editor'
+                                    ? 'text-blue-700 bg-white shadow-sm'
+                                    : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100'
                                 }`}
                         >
-                            🎨 JSON Editor
+                            <div className="flex items-center space-x-2">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                </svg>
+                                <span>Code Editor</span>
+                            </div>
+                            {activeTab === 'editor' && (
+                                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                            )}
                         </button>
                     </div>
 

@@ -42,7 +42,7 @@ export default function Home() {
 
         {/* Title */}
         <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient">
-          Atlas PDF
+          Doc PDF
         </h1>
 
         {/* Subtitle */}
