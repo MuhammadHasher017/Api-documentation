@@ -34,9 +34,18 @@
           "type": "infoBox",
           "title": "API Information",
           "items": [
-            { "label": "Base URL", "value": "{api.baseUrl}" },
-            { "label": "API Version", "value": "{api.version}" },
-            { "label": "Protocol", "value": "{api.protocol}" }
+            {
+              "label": "Base URL",
+              "value": "{api.baseUrl}"
+            },
+            {
+              "label": "API Version",
+              "value": "{api.version}"
+            },
+            {
+              "label": "Protocol",
+              "value": "{api.protocol}"
+            }
           ]
         },
         {
@@ -47,8 +56,14 @@
             {
               "type": "infoBox",
               "items": [
-                { "label": "Method", "value": "{api.authMethod}" },
-                { "label": "Header Name", "value": "{api.authHeader}" }
+                {
+                  "label": "Method",
+                  "value": "{api.authMethod}"
+                },
+                {
+                  "label": "Header Name",
+                  "value": "{api.authHeader}"
+                }
               ]
             },
             {
@@ -70,11 +85,27 @@
           "title": "Common Parameters",
           "content": "Most endpoints support these common parameters:",
           "table": {
-            "headers": ["Parameter", "Type", "Description"],
-            "columnWidths": [0.3, 0.25, 0.45],
+            "headers": [
+              "Parameter",
+              "Type",
+              "Description"
+            ],
+            "columnWidths": [
+              0.3,
+              0.25,
+              0.45
+            ],
             "rows": [
-              ["Ids", "array[integer]", "Filter by specific IDs"],
-              ["SortClauses", "string", "Sort order for results"]
+              [
+                "Ids",
+                "array[integer]",
+                "Filter by specific IDs"
+              ],
+              [
+                "SortClauses",
+                "string",
+                "Sort order for results"
+              ]
             ]
           }
         }
@@ -83,10 +114,6 @@
     {
       "id": "customer-endpoints",
       "sections": [
-        {
-          "type": "section",
-          "title": "Customer & Region Endpoints"
-        },
         {
           "type": "section",
           "title": "Get Customers",
@@ -102,11 +129,27 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["Ids", "array[integer]", "Filter by customer IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by customer IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -127,11 +170,27 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["Ids", "array[integer]", "Filter by region IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by region IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -152,12 +211,32 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["CustomerIds", "array[integer]", "Filter by customer IDs"],
-                  ["Ids", "array[integer]", "Filter by user IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "CustomerIds",
+                    "array[integer]",
+                    "Filter by customer IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by user IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -166,12 +245,8 @@
       ]
     },
     {
-      "id": "job-endpoints",
+      "id": "job-endpoints-1 ",
       "sections": [
-        {
-          "type": "section",
-          "title": "Job Management Endpoints"
-        },
         {
           "type": "section",
           "title": "Get Jobs",
@@ -187,13 +262,37 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["Status", "string", "Filter by job status"],
-                  ["CustomerIds", "array[integer]", "Filter by customer IDs"],
-                  ["Ids", "array[integer]", "Filter by job IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "Status",
+                    "string",
+                    "Filter by job status"
+                  ],
+                  [
+                    "CustomerIds",
+                    "array[integer]",
+                    "Filter by customer IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by job IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -214,17 +313,43 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["JobIds", "array[integer]", "Filter by job IDs"],
-                  ["Ids", "array[integer]", "Filter by stage IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "JobIds",
+                    "array[integer]",
+                    "Filter by job IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by stage IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": "job-endpoints-2 ",
+      "sections": [
+
         {
           "type": "section",
           "title": "Get Job Statuses",
@@ -240,11 +365,27 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["Ids", "array[integer]", "Filter by status IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by status IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -265,12 +406,32 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["JobIds", "array[integer]", "Filter by job IDs"],
-                  ["Ids", "array[integer]", "Filter by status IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "JobIds",
+                    "array[integer]",
+                    "Filter by job IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by status IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -291,11 +452,27 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["Ids", "array[integer]", "Filter by crew IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by crew IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -306,10 +483,6 @@
     {
       "id": "purchase-order-endpoints",
       "sections": [
-        {
-          "type": "section",
-          "title": "Purchase Order Endpoints"
-        },
         {
           "type": "section",
           "title": "Get Job Purchase Orders",
@@ -325,14 +498,42 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["JobIds", "array[integer]", "Filter by job IDs"],
-                  ["ProductIds", "array[integer]", "Filter by product IDs"],
-                  ["VendorIds", "array[integer]", "Filter by vendor IDs"],
-                  ["Ids", "array[integer]", "Filter by PO IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "JobIds",
+                    "array[integer]",
+                    "Filter by job IDs"
+                  ],
+                  [
+                    "ProductIds",
+                    "array[integer]",
+                    "Filter by product IDs"
+                  ],
+                  [
+                    "VendorIds",
+                    "array[integer]",
+                    "Filter by vendor IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by PO IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -353,14 +554,42 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["JobPOIds", "array[integer]", "Filter by job PO IDs"],
-                  ["PlantIds", "array[integer]", "Filter by plant IDs"],
-                  ["BucketIds", "array[integer]", "Filter by bucket IDs"],
-                  ["Ids", "array[integer]", "Filter by detail IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "JobPOIds",
+                    "array[integer]",
+                    "Filter by job PO IDs"
+                  ],
+                  [
+                    "PlantIds",
+                    "array[integer]",
+                    "Filter by plant IDs"
+                  ],
+                  [
+                    "BucketIds",
+                    "array[integer]",
+                    "Filter by bucket IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by detail IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -371,10 +600,6 @@
     {
       "id": "product-plant-endpoints",
       "sections": [
-        {
-          "type": "section",
-          "title": "Product & Plant Endpoints"
-        },
         {
           "type": "section",
           "title": "Get Products",
@@ -390,11 +615,27 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["Ids", "array[integer]", "Filter by product IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by product IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -415,12 +656,32 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["ApprovalStatusIds", "array[integer]", "Filter by approval status"],
-                  ["Ids", "array[integer]", "Filter by plant IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "ApprovalStatusIds",
+                    "array[integer]",
+                    "Filter by approval status"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by plant IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -441,11 +702,27 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["Ids", "array[integer]", "Filter by status IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by status IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -466,13 +743,37 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["JobIds", "array[integer]", "Filter by job IDs"],
-                  ["ProductIds", "array[integer]", "Filter by product IDs"],
-                  ["Ids", "array[integer]", "Filter by bucket IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "JobIds",
+                    "array[integer]",
+                    "Filter by job IDs"
+                  ],
+                  [
+                    "ProductIds",
+                    "array[integer]",
+                    "Filter by product IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by bucket IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -502,12 +803,32 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["StatusIds", "array[integer]", "Filter by status IDs"],
-                  ["Ids", "array[integer]", "Filter by vendor IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "StatusIds",
+                    "array[integer]",
+                    "Filter by status IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by vendor IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -528,11 +849,27 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["Ids", "array[integer]", "Filter by hauler IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by hauler IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -553,12 +890,32 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["HaulerIds", "array[integer]", "Filter by hauler IDs"],
-                  ["Ids", "array[integer]", "Filter by driver IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "HaulerIds",
+                    "array[integer]",
+                    "Filter by hauler IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by driver IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -579,12 +936,32 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["HaulerIds", "array[integer]", "Filter by hauler IDs"],
-                  ["Ids", "array[integer]", "Filter by truck IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "HaulerIds",
+                    "array[integer]",
+                    "Filter by hauler IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by truck IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -605,13 +982,37 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["TruckIds", "array[integer]", "Filter by truck IDs"],
-                  ["DriverIds", "array[integer]", "Filter by driver IDs"],
-                  ["Ids", "array[integer]", "Filter by mapping IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "TruckIds",
+                    "array[integer]",
+                    "Filter by truck IDs"
+                  ],
+                  [
+                    "DriverIds",
+                    "array[integer]",
+                    "Filter by driver IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by mapping IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -622,10 +1023,6 @@
     {
       "id": "load-bol-endpoints",
       "sections": [
-        {
-          "type": "section",
-          "title": "Load & BOL Endpoints"
-        },
         {
           "type": "section",
           "title": "Get Loads",
@@ -641,19 +1038,67 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["LoadStatusIds", "array[integer]", "Filter by load status"],
-                  ["AcceptedDriverIds", "array[integer]", "Filter by accepted driver"],
-                  ["JobIds", "array[integer]", "Filter by job IDs"],
-                  ["CustomerIds", "array[integer]", "Filter by customer IDs"],
-                  ["PlantIds", "array[integer]", "Filter by plant IDs"],
-                  ["ProductIds", "array[integer]", "Filter by product IDs"],
-                  ["TruckIds", "array[integer]", "Filter by truck IDs"],
-                  ["JobPOIds", "array[integer]", "Filter by job PO IDs"],
-                  ["Ids", "array[integer]", "Filter by load IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "LoadStatusIds",
+                    "array[integer]",
+                    "Filter by load status"
+                  ],
+                  [
+                    "AcceptedDriverIds",
+                    "array[integer]",
+                    "Filter by accepted driver"
+                  ],
+                  [
+                    "JobIds",
+                    "array[integer]",
+                    "Filter by job IDs"
+                  ],
+                  [
+                    "CustomerIds",
+                    "array[integer]",
+                    "Filter by customer IDs"
+                  ],
+                  [
+                    "PlantIds",
+                    "array[integer]",
+                    "Filter by plant IDs"
+                  ],
+                  [
+                    "ProductIds",
+                    "array[integer]",
+                    "Filter by product IDs"
+                  ],
+                  [
+                    "TruckIds",
+                    "array[integer]",
+                    "Filter by truck IDs"
+                  ],
+                  [
+                    "JobPOIds",
+                    "array[integer]",
+                    "Filter by job PO IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by load IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -674,11 +1119,27 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["Ids", "array[integer]", "Filter by status IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by status IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -700,21 +1161,77 @@
               "title": "Query Parameters",
               "helpText": "BOL endpoint supports extensive filtering options",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["LoadIds", "array[integer]", "Filter by load IDs"],
-                  ["JobIds", "array[integer]", "Filter by job IDs"],
-                  ["JobPOIds", "array[integer]", "Filter by job PO IDs"],
-                  ["PlantIds", "array[integer]", "Filter by plant IDs"],
-                  ["CustomerIds", "array[integer]", "Filter by customer IDs"],
-                  ["ProductIds", "array[integer]", "Filter by product IDs"],
-                  ["TruckIds", "array[integer]", "Filter by truck IDs"],
-                  ["HaulerIds", "array[integer]", "Filter by hauler IDs"],
-                  ["DriverIds", "array[integer]", "Filter by driver IDs"],
-                  ["BolStatusIds", "array[integer]", "Filter by BOL status"],
-                  ["Ids", "array[integer]", "Filter by BOL IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "LoadIds",
+                    "array[integer]",
+                    "Filter by load IDs"
+                  ],
+                  [
+                    "JobIds",
+                    "array[integer]",
+                    "Filter by job IDs"
+                  ],
+                  [
+                    "JobPOIds",
+                    "array[integer]",
+                    "Filter by job PO IDs"
+                  ],
+                  [
+                    "PlantIds",
+                    "array[integer]",
+                    "Filter by plant IDs"
+                  ],
+                  [
+                    "CustomerIds",
+                    "array[integer]",
+                    "Filter by customer IDs"
+                  ],
+                  [
+                    "ProductIds",
+                    "array[integer]",
+                    "Filter by product IDs"
+                  ],
+                  [
+                    "TruckIds",
+                    "array[integer]",
+                    "Filter by truck IDs"
+                  ],
+                  [
+                    "HaulerIds",
+                    "array[integer]",
+                    "Filter by hauler IDs"
+                  ],
+                  [
+                    "DriverIds",
+                    "array[integer]",
+                    "Filter by driver IDs"
+                  ],
+                  [
+                    "BolStatusIds",
+                    "array[integer]",
+                    "Filter by BOL status"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by BOL IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -735,11 +1252,27 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["Ids", "array[integer]", "Filter by status IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by status IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -769,16 +1302,52 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["OfferStatus", "string", "Filter by offer status"],
-                  ["LoadIds", "array[integer]", "Filter by load IDs"],
-                  ["JobIds", "array[integer]", "Filter by job IDs"],
-                  ["HaulerIds", "array[integer]", "Filter by hauler IDs"],
-                  ["PlantIds", "array[integer]", "Filter by plant IDs"],
-                  ["Ids", "array[integer]", "Filter by offer IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "OfferStatus",
+                    "string",
+                    "Filter by offer status"
+                  ],
+                  [
+                    "LoadIds",
+                    "array[integer]",
+                    "Filter by load IDs"
+                  ],
+                  [
+                    "JobIds",
+                    "array[integer]",
+                    "Filter by job IDs"
+                  ],
+                  [
+                    "HaulerIds",
+                    "array[integer]",
+                    "Filter by hauler IDs"
+                  ],
+                  [
+                    "PlantIds",
+                    "array[integer]",
+                    "Filter by plant IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by offer IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -799,11 +1368,27 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["Ids", "array[integer]", "Filter by status IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by status IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -825,18 +1410,62 @@
               "title": "Query Parameters",
               "helpText": "Track changes between original and new destinations",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["OriginalJobIds", "array[integer]", "Original job IDs"],
-                  ["LoadIds", "array[integer]", "Filter by load IDs"],
-                  ["NewJobIds", "array[integer]", "New job IDs"],
-                  ["OriginalJobPOIds", "array[integer]", "Original PO IDs"],
-                  ["NewJobPOIds", "array[integer]", "New PO IDs"],
-                  ["OriginalPlantIds", "array[integer]", "Original plant IDs"],
-                  ["NewPlantIds", "array[integer]", "New plant IDs"],
-                  ["Ids", "array[integer]", "Redirection IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "OriginalJobIds",
+                    "array[integer]",
+                    "Original job IDs"
+                  ],
+                  [
+                    "LoadIds",
+                    "array[integer]",
+                    "Filter by load IDs"
+                  ],
+                  [
+                    "NewJobIds",
+                    "array[integer]",
+                    "New job IDs"
+                  ],
+                  [
+                    "OriginalJobPOIds",
+                    "array[integer]",
+                    "Original PO IDs"
+                  ],
+                  [
+                    "NewJobPOIds",
+                    "array[integer]",
+                    "New PO IDs"
+                  ],
+                  [
+                    "OriginalPlantIds",
+                    "array[integer]",
+                    "Original plant IDs"
+                  ],
+                  [
+                    "NewPlantIds",
+                    "array[integer]",
+                    "New plant IDs"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Redirection IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -857,11 +1486,27 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["Ids", "array[integer]", "Filter by status IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by status IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -882,11 +1527,27 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["Ids", "array[integer]", "Filter by status IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by status IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
@@ -907,12 +1568,32 @@
               "type": "section",
               "title": "Query Parameters",
               "table": {
-                "headers": ["Parameter", "Type", "Description"],
-                "columnWidths": [0.25, 0.25, 0.5],
+                "headers": [
+                  "Parameter",
+                  "Type",
+                  "Description"
+                ],
+                "columnWidths": [
+                  0.25,
+                  0.25,
+                  0.5
+                ],
                 "rows": [
-                  ["ReasonDescription", "string", "Filter by description text"],
-                  ["Ids", "array[integer]", "Filter by reason IDs"],
-                  ["SortClauses", "string", "Specify sort order"]
+                  [
+                    "ReasonDescription",
+                    "string",
+                    "Filter by description text"
+                  ],
+                  [
+                    "Ids",
+                    "array[integer]",
+                    "Filter by reason IDs"
+                  ],
+                  [
+                    "SortClauses",
+                    "string",
+                    "Specify sort order"
+                  ]
                 ]
               }
             }
