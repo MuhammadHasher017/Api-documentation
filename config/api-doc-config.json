@@ -349,7 +349,6 @@
     {
       "id": "job-endpoints-2 ",
       "sections": [
-
         {
           "type": "section",
           "title": "Get Job Statuses",
@@ -1606,10 +1605,6 @@
       "sections": [
         {
           "type": "section",
-          "title": "Hauler Management Endpoints"
-        },
-        {
-          "type": "section",
           "title": "Get Driver Schedule",
           "endpoints": [
             {
@@ -1639,8 +1634,8 @@
               "content": "Use specific ID filters (like JobIds, LoadIds) instead of retrieving all records for better performance."
             },
             {
-              "title": "Implement Pagination",
-              "content": "Use SortClauses parameter to implement consistent pagination across requests."
+              "title": "Handle Sorting",
+              "content": "pass the columns for sorting in a comma separated string like 'JobName Asc, CreatedDate Desc'."
             },
             {
               "title": "Secure Your API Key",

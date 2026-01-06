@@ -424,11 +424,18 @@ const Table = ({ data, styles }) => {
   );
 };
 
-const Section = ({ section, styles, config }) => {
+const Section = ({ section, styles, config, estimatedPercentage }) => {
+  // Use percentage-based minPresenceAhead calculation
+  const minPresence = Math.min(estimatedPercentage * 8, 200); // Convert % to pixels (rough estimate)
+  
   return (
-    <View style={styles.section} wrap={false} minPresenceAhead={150}>
+    <View 
+      style={styles.section} 
+      wrap={false} 
+      minPresenceAhead={minPresence}
+    >
       {section.title && (
-        <Text style={styles.sectionTitle}>
+        <Text style={styles.sectionTitle} wrap={false}>
           {replaceVariables(section.title, config)}
         </Text>
       )}
@@ -522,7 +529,7 @@ const Section = ({ section, styles, config }) => {
           }
           if (subsection.type === 'securityBadge') {
             return (
-              <View key={idx} style={styles.securityBadge}>
+              <View key={idx} style={styles.securityBadge} wrap={false}>
                 <Text style={styles.securityText}>
                   {replaceVariables(subsection.text, config)}
                 </Text>
@@ -531,12 +538,12 @@ const Section = ({ section, styles, config }) => {
           }
           if (subsection.type === 'section') {
             return (
-              <View key={idx}>
+              <View key={idx} wrap={false} minPresenceAhead={80}>
                 {subsection.title && (
-                  <Text style={styles.subsectionTitle}>{subsection.title}</Text>
+                  <Text style={styles.subsectionTitle} wrap={false}>{subsection.title}</Text>
                 )}
                 {subsection.helpText && (
-                  <Text style={styles.bodyText}>
+                  <Text style={styles.helpText}>
                     {replaceVariables(subsection.helpText, config)}
                   </Text>
                 )}
@@ -551,9 +558,9 @@ const Section = ({ section, styles, config }) => {
           }
           if (subsection.type === 'subsection') {
             return (
-              <View key={idx}>
+              <View key={idx} wrap={false} minPresenceAhead={60}>
                 {subsection.title && (
-                  <Text style={styles.subsectionTitle}>{subsection.title}</Text>
+                  <Text style={styles.subsectionTitle} wrap={false}>{subsection.title}</Text>
                 )}
                 {subsection.content?.type === 'codeBlock' && (
                   <View style={styles.infoBox}>
@@ -590,12 +597,171 @@ const PageFooter = ({ config }) => {
 };
 
 // ============================================================================
+// PERCENTAGE-BASED PAGE UTILIZATION SYSTEM
+// ============================================================================
+
+const calculateSectionPercentage = (section) => {
+  let percentage = 0;
+  
+  // Section title: 2%
+  if (section.title) {
+    percentage += 2;
+  }
+  
+  // Content text: 1% per estimated line (more conservative)
+  if (section.content) {
+    const lines = Math.ceil(section.content.length / 80);
+    percentage += lines * 1;
+  }
+  
+  // Help text: 1% per line
+  if (section.helpText) {
+    const lines = Math.ceil(section.helpText.length / 90);
+    percentage += lines * 1;
+  }
+  
+  // Endpoints: 5% per endpoint card (reduced from 8%)
+  if (section.endpoints) {
+    section.endpoints.forEach(endpoint => {
+      percentage += 5; // Base endpoint card
+      
+      // Parameters table: 2% + 1% per row (reduced)
+      if (endpoint.parameters && endpoint.parameters.length > 0) {
+        percentage += 2; // Table header
+        percentage += endpoint.parameters.length * 1; // Each parameter row
+      }
+    });
+  }
+  
+  // Tables in subsections: 2% header + 1% per row (reduced)
+  if (section.subsections) {
+    section.subsections.forEach(subsection => {
+      if (subsection.title) percentage += 1.5; // Subsection title
+      if (subsection.helpText) {
+        const lines = Math.ceil(subsection.helpText.length / 90);
+        percentage += lines * 1;
+      }
+      if (subsection.table) {
+        percentage += 2; // Table header
+        percentage += subsection.table.rows.length * 1; // Each row
+      }
+      if (subsection.content) {
+        const lines = Math.ceil(subsection.content.length / 80);
+        percentage += lines * 1;
+      }
+    });
+  }
+  
+  // Practices: 1.5% per practice item
+  if (section.practices) {
+    percentage += section.practices.length * 1.5;
+  }
+  
+  // Info boxes: 5% base + 0.5% per item (reduced)
+  if (section.type === 'infoBox') {
+    percentage += 5; // Base info box
+    if (section.items) {
+      percentage += section.items.length * 0.5;
+    }
+    if (section.list && section.list.items) {
+      percentage += section.list.items.length * 0.5;
+    }
+  }
+  
+  // Header sections: 4%
+  if (section.type === 'header') {
+    percentage += 4;
+  }
+  
+  return Math.max(percentage, 1); // Minimum 1% per section
+};
+
+// ============================================================================
 // MAIN DOCUMENT COMPONENT
 // ============================================================================
 
 const DynamicPDFDocument = ({ config }) => {
   const styles = createStyles(config);
-console.log("config",config)
+  
+  // Optimize each page object separately while respecting page boundaries
+  const optimizedPages = [];
+  const maxPageUtilization = 90;
+  
+  config.pages.forEach((pageObj, pageObjIndex) => {
+    let currentPageSections = [];
+    let currentPagePercentage = 0;
+    
+    pageObj.sections.forEach((section, sectionIndex) => {
+      const sectionPercentage = calculateSectionPercentage(section);
+      
+      // If this section alone exceeds max utilization, put it on its own page
+      if (sectionPercentage > maxPageUtilization) {
+        // Finish current page if it has content
+        if (currentPageSections.length > 0) {
+          optimizedPages.push({
+            sections: [...currentPageSections],
+            utilization: currentPagePercentage,
+            originalPageId: pageObj.id
+          });
+          currentPageSections = [];
+          currentPagePercentage = 0;
+        }
+        // Add the large section to its own page
+        optimizedPages.push({
+          sections: [section],
+          utilization: sectionPercentage,
+          originalPageId: pageObj.id
+        });
+        return;
+      }
+      
+      // If adding this section would exceed max utilization, start new page
+      if (currentPagePercentage + sectionPercentage > maxPageUtilization) {
+        optimizedPages.push({
+          sections: [...currentPageSections],
+          utilization: currentPagePercentage,
+          originalPageId: pageObj.id
+        });
+        currentPageSections = [section];
+        currentPagePercentage = sectionPercentage;
+      } else {
+        // Add section to current page
+        currentPageSections.push(section);
+        currentPagePercentage += sectionPercentage;
+      }
+    });
+    
+    // Finish the current page object - force page break here
+    if (currentPageSections.length > 0) {
+      optimizedPages.push({
+        sections: currentPageSections,
+        utilization: currentPagePercentage,
+        originalPageId: pageObj.id
+      });
+      currentPageSections = [];
+      currentPagePercentage = 0;
+    }
+  });
+  
+  console.log("📊 Page-Controlled Optimization:");
+  console.log(`Original page objects: ${config.pages.length}`);
+  console.log(`Optimized PDF pages: ${optimizedPages.length}`);
+  
+  console.log("📄 Page Object Breakdown:");
+  config.pages.forEach((pageObj, index) => {
+    const pageObjPages = optimizedPages.filter(p => p.originalPageId === pageObj.id);
+    console.log(`\n🔷 Page Object "${pageObj.id}": ${pageObj.sections.length} sections → ${pageObjPages.length} PDF pages`);
+    
+    pageObj.sections.forEach((section, sIndex) => {
+      const percentage = calculateSectionPercentage(section);
+      console.log(`    - "${section.title || section.type}" (${percentage.toFixed(1)}%)`);
+    });
+    
+    pageObjPages.forEach((pdfPage, pIndex) => {
+      console.log(`    📄 PDF Page ${optimizedPages.indexOf(pdfPage) + 1}: ${pdfPage.utilization.toFixed(1)}% utilization`);
+    });
+  });
+
   return (
     <Document
       title={config?.metadata?.title}
@@ -603,14 +769,16 @@ console.log("config",config)
       subject={config.metadata.subject}
       keywords={config.metadata.keywords}
     >
-      {config.pages.map((page, pageIndex) => (
+      {optimizedPages.map((pageData, pageIndex) => (
         <Page key={pageIndex} size="A4" style={styles.page} wrap>
           <PageFooter config={config} />
 
-          {page.sections.map((section, sectionIndex) => {
+          {pageData.sections.map((section, sectionIndex) => {
+            const sectionPercentage = calculateSectionPercentage(section);
+            
             if (section.type === 'header') {
               return (
-                <View key={sectionIndex} style={styles.header}>
+                <View key={sectionIndex} style={styles.header} wrap={false}>
                   <Text style={styles.title}>
                     {replaceVariables(section.title, config)}
                   </Text>
@@ -634,6 +802,7 @@ console.log("config",config)
                   section={section}
                   styles={styles}
                   config={config}
+                  estimatedPercentage={sectionPercentage}
                 />
               );
             }
