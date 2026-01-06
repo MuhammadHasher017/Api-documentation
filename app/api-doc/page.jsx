@@ -816,7 +816,7 @@ export default function AtlasApiDoc() {
                                 <ul className="text-purple-800 text-sm space-y-1">
                                     <li>• <code className="bg-purple-200 px-1 rounded">parameters</code> - Define parameters directly in endpoint object (cleaner structure)</li>
                                     <li>• <code className="bg-purple-200 px-1 rounded">category</code> - Group related parameters for better organization</li>
-                                    <li>• <code className="bg-purple-200 px-1 rounded">format</code> - Specify data format (e.g., "int32" for integers)</li>
+                                    <li>• <code className="bg-purple-200 px-1 rounded">format</code> - Specify data format</li>
                                     <li>• <code className="bg-purple-200 px-1 rounded">subsections</code> - Optional: Use only when you need additional tables/content</li>
                                 </ul>
                             </div>
