@@ -199,6 +199,156 @@ export default function AtlasApiDoc() {
         document.addEventListener('mouseup', handleMouseUp);
     };
 
+    // Helper functions for adding JSON structures
+    const addNewPage = () => {
+        const newPageTemplate = {
+            "id": "new-page-" + Date.now(),
+            "sections": [
+                {
+                    "type": "section",
+                    "title": "New Section",
+                    "content": "Add your content here",
+                    "endpoints": [
+                        {
+                            "method": "GET",
+                            "path": "/api/your-endpoint",
+                            "description": "Describe your endpoint here",
+                            "parameters": [
+                                {
+                                    "name": "id",
+                                    "type": "integer",
+                                    "description": "Resource ID",
+                                    "category": "filter"
+                                }
+                            ]
+                        }
+                    ],
+                    "subsections": [
+                        {
+                            "type": "section",
+                            "title": "Query Parameters",
+                            "table": {
+                                "headers": ["Parameter", "Type", "Description"],
+                                "columnWidths": [0.25, 0.25, 0.5],
+                                "rows": [
+                                    ["id", "integer", "Resource ID"],
+                                    ["limit", "integer", "Number of results"]
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        };
+
+        const jsonString = JSON.stringify(newPageTemplate, null, 2);
+        navigator.clipboard.writeText(jsonString).then(() => {
+            alert('New page template copied to clipboard! Paste it into your pages array.');
+        });
+    };
+
+    const addNewSection = () => {
+        const newSectionTemplate = {
+            "type": "section",
+            "title": "New API Endpoint",
+            "content": "Description of this endpoint group",
+            "endpoints": [
+                {
+                    "method": "GET",
+                    "path": "/api/your-endpoint",
+                    "description": "Detailed description of what this endpoint does",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "type": "integer",
+                            "description": "Unique identifier",
+                            "category": "filter"
+                        },
+                        {
+                            "name": "limit",
+                            "type": "integer", 
+                            "description": "Maximum number of results to return",
+                            "category": "pagination"
+                        },
+                        {
+                            "name": "offset",
+                            "type": "integer",
+                            "description": "Number of results to skip",
+                            "category": "pagination"
+                        }
+                    ]
+                }
+            ],
+            "subsections": [
+                {
+                    "type": "section",
+                    "title": "Query Parameters",
+                    "helpText": "Optional help text explaining the parameters",
+                    "table": {
+                        "headers": ["Parameter", "Type", "Description"],
+                        "columnWidths": [0.25, 0.25, 0.5],
+                        "rows": [
+                            ["id", "integer", "Unique identifier"],
+                            ["limit", "integer", "Maximum results (default: 50)"],
+                            ["offset", "integer", "Results to skip (default: 0)"]
+                        ]
+                    }
+                }
+            ]
+        };
+
+        const jsonString = JSON.stringify(newSectionTemplate, null, 2);
+        navigator.clipboard.writeText(jsonString).then(() => {
+            alert('New section template copied to clipboard! Paste it into your sections array.');
+        });
+    };
+
+    const addInfoBox = () => {
+        const infoBoxTemplate = {
+            "type": "infoBox",
+            "variant": "blue",
+            "title": "Important Information",
+            "content": "Additional context or important notes",
+            "items": [
+                {
+                    "label": "API Version",
+                    "value": "v1.0"
+                },
+                {
+                    "label": "Rate Limit",
+                    "value": "1000 requests/hour"
+                }
+            ]
+        };
+
+        const jsonString = JSON.stringify(infoBoxTemplate, null, 2);
+        navigator.clipboard.writeText(jsonString).then(() => {
+            alert('Info box template copied to clipboard! Paste it into your sections array.');
+        });
+    };
+
+    const addTableSection = () => {
+        const tableTemplate = {
+            "type": "section",
+            "title": "Data Table",
+            "content": "Description of the table content",
+            "table": {
+                "headers": ["Column 1", "Column 2", "Column 3"],
+                "columnWidths": [0.3, 0.3, 0.4],
+                "rows": [
+                    ["Row 1 Col 1", "Row 1 Col 2", "Row 1 Col 3"],
+                    ["Row 2 Col 1", "Row 2 Col 2", "Row 2 Col 3"],
+                    ["Row 3 Col 1", "Row 3 Col 2", "Row 3 Col 3"]
+                ]
+            }
+        };
+
+        const jsonString = JSON.stringify(tableTemplate, null, 2);
+        navigator.clipboard.writeText(jsonString).then(() => {
+            alert('Table section template copied to clipboard! Paste it into your sections array.');
+        });
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
             <div className="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -631,79 +781,126 @@ export default function AtlasApiDoc() {
 
                 {/* JSON Structure Documentation */}
                 {showJsonStructure && (
-                    <div className="bg-gray-50 rounded-lg p-6 mb-8 border">
-                        <div className="flex justify-between items-center mb-4">
-                            <h3 className="text-lg font-semibold text-gray-900">
+                    <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl p-8 mb-8 border border-slate-200 shadow-lg">
+                        <div className="flex justify-between items-center mb-6">
+                            <h3 className="text-2xl font-bold text-slate-900">
                                 📋 JSON Configuration Structure
                             </h3>
-                            <button
-                                onClick={() => {
-                                    const jsonStructure = JSON.stringify({
-                                        "metadata": {
-                                            "title": "Your API Documentation",
-                                            "author": "Your Team",
-                                            "subject": "API Reference",
-                                            "keywords": "API, Documentation, REST",
-                                            "version": "1.0",
-                                            "filename": "your-api-documentation.pdf"
-                                        },
-                                        "api": {
-                                            "baseUrl": "https://api.yourcompany.com/",
-                                            "version": "v1",
-                                            "protocol": "HTTPS",
-                                            "authMethod": "API Key (Header-based)",
-                                            "authHeader": "x-api-key"
-                                        },
-                                        "colors": {
-                                            "primary": "#1e40af",
-                                            "primaryDark": "#1e293b",
-                                            "secondary": "#2563eb",
-                                            "success": "#10b981",
-                                            "warning": "#d97706",
-                                            "error": "#dc2626"
-                                        },
-                                        "pages": [
-                                            {
-                                                "id": "overview",
-                                                "sections": [
-                                                    {
-                                                        "type": "header",
-                                                        "title": "API Documentation"
-                                                    },
-                                                    {
-                                                        "type": "section",
-                                                        "title": "Get Loads Details",
-                                                        "endpoints": [
-                                                            {
-                                                                "method": "GET",
-                                                                "path": "/api/DomoData/GetLoads",
-                                                                "description": "Retrieves detailed information about loads.",
-                                                                "parameters": [
-                                                                    {
-                                                                        "name": "LoadStatusIds",
-                                                                        "type": "array[integer]",
-                                                                        "description": "Filter by specific load status IDs",
-                                                                        "category": "status"
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }, null, 2);
-                                    navigator.clipboard.writeText(jsonStructure).then(() => {
-                                        alert('JSON structure copied to clipboard!');
-                                    });
-                                }}
-                                className="px-3 py-1 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors"
-                            >
-                                📋 Copy Structure
-                            </button>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => {
+                                        const jsonStructure = JSON.stringify({
+                                            "metadata": {
+                                                "title": "Your API Documentation",
+                                                "author": "Your Team",
+                                                "subject": "API Reference",
+                                                "keywords": "API, Documentation, REST",
+                                                "version": "1.0",
+                                                "filename": "your-api-documentation.pdf"
+                                            },
+                                            "api": {
+                                                "baseUrl": "https://api.yourcompany.com/",
+                                                "version": "v1",
+                                                "protocol": "HTTPS",
+                                                "authMethod": "API Key (Header-based)",
+                                                "authHeader": "x-api-key"
+                                            },
+                                            "colors": {
+                                                "primary": "#1e40af",
+                                                "primaryDark": "#1e293b",
+                                                "secondary": "#2563eb",
+                                                "success": "#10b981",
+                                                "warning": "#d97706",
+                                                "error": "#dc2626"
+                                            },
+                                            "pages": [
+                                                {
+                                                    "id": "overview",
+                                                    "sections": [
+                                                        {
+                                                            "type": "header",
+                                                            "title": "API Documentation"
+                                                        },
+                                                        {
+                                                            "type": "section",
+                                                            "title": "Get Loads Details",
+                                                            "endpoints": [
+                                                                {
+                                                                    "method": "GET",
+                                                                    "path": "/api/DomoData/GetLoads",
+                                                                    "description": "Retrieves detailed information about loads.",
+                                                                    "parameters": [
+                                                                        {
+                                                                            "name": "LoadStatusIds",
+                                                                            "type": "array[integer]",
+                                                                            "description": "Filter by specific load status IDs",
+                                                                            "category": "status"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }, null, 2);
+                                        navigator.clipboard.writeText(jsonStructure).then(() => {
+                                            alert('Complete JSON structure copied to clipboard!');
+                                        });
+                                    }}
+                                    className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-md"
+                                >
+                                    📋 Copy Full Structure
+                                </button>
+                            </div>
                         </div>
-                        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-                            <pre className="text-sm text-gray-100">
+
+                        {/* Interactive Template Buttons */}
+                        <div className="mb-6 p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                            <h4 className="text-lg font-semibold text-slate-800 mb-3">🚀 Quick Add Templates</h4>
+                            <p className="text-sm text-slate-600 mb-4">Click any button to copy a ready-to-use template to your clipboard, then paste it into your JSON:</p>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <button
+                                    onClick={addNewPage}
+                                    className="px-4 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-200 text-sm font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex flex-col items-center space-y-1"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                    <span>Add Page</span>
+                                </button>
+                                <button
+                                    onClick={addNewSection}
+                                    className="px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-lg hover:from-blue-600 hover:to-indigo-600 transition-all duration-200 text-sm font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex flex-col items-center space-y-1"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    <span>Add Section</span>
+                                </button>
+                                <button
+                                    onClick={addInfoBox}
+                                    className="px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-200 text-sm font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex flex-col items-center space-y-1"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Add Info Box</span>
+                                </button>
+                                <button
+                                    onClick={addTableSection}
+                                    className="px-4 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-200 text-sm font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex flex-col items-center space-y-1"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M3 14h18m-9-4v8m-7 0V4a1 1 0 011-1h3M3 20h18a1 1 0 001-1V4a1 1 0 00-1-1H3a1 1 0 00-1 1v16a1 1 0 001 1z" />
+                                    </svg>
+                                    <span>Add Table</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="bg-slate-900 rounded-xl p-6 overflow-x-auto shadow-inner">
+                            <pre className="text-sm text-slate-100 leading-relaxed">
 {`{
   "metadata": {
     "title": "Your API Documentation",
@@ -767,155 +964,18 @@ export default function AtlasApiDoc() {
 }`}
                             </pre>
                         </div>
-                        <div className="mt-4 text-sm text-gray-600">
-                            <h4 className="font-semibold mb-2">Enhanced Structure Components:</h4>
-                            <div className="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <h5 className="font-medium mb-1">Endpoint Definition:</h5>
-                                    <ul className="list-disc list-inside space-y-1">
-                                        <li><code className="bg-gray-200 px-1 rounded">method</code> - HTTP method (GET, POST, etc.)</li>
-                                        <li><code className="bg-gray-200 px-1 rounded">path</code> - API endpoint path</li>
-                                        <li><code className="bg-gray-200 px-1 rounded">description</code> - Detailed endpoint description</li>
-                                        <li><code className="bg-gray-200 px-1 rounded">parameters</code> - Array of parameter objects</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h5 className="font-medium mb-1">Parameter Properties:</h5>
-                                    <ul className="list-disc list-inside space-y-1">
-                                        <li><code className="bg-gray-200 px-1 rounded">name</code> - Parameter name</li>
-                                        <li><code className="bg-gray-200 px-1 rounded">type</code> - Data type (string, integer, array, etc.)</li>
-                                        <li><code className="bg-gray-200 px-1 rounded">description</code> - Parameter description</li>
-                                        <li><code className="bg-gray-200 px-1 rounded">category</code> - Grouping category (optional)</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                                <h5 className="font-medium text-blue-900 mb-2">Parameter Categories:</h5>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-blue-800 text-sm">
-                                    <div><code className="bg-blue-200 px-1 rounded">status</code> - Status filters</div>
-                                    <div><code className="bg-blue-200 px-1 rounded">job</code> - Job-related filters</div>
-                                    <div><code className="bg-blue-200 px-1 rounded">customer</code> - Customer filters</div>
-                                    <div><code className="bg-blue-200 px-1 rounded">plant</code> - Plant filters</div>
-                                    <div><code className="bg-blue-200 px-1 rounded">product</code> - Product filters</div>
-                                    <div><code className="bg-blue-200 px-1 rounded">truck</code> - Truck filters</div>
-                                    <div><code className="bg-blue-200 px-1 rounded">hauler</code> - Hauler filters</div>
-                                    <div><code className="bg-blue-200 px-1 rounded">driver</code> - Driver filters</div>
-                                    <div><code className="bg-blue-200 px-1 rounded">load</code> - Load filters</div>
-                                    <div><code className="bg-blue-200 px-1 rounded">purchase-order</code> - PO filters</div>
-                                    <div><code className="bg-blue-200 px-1 rounded">original</code> - Original values</div>
-                                    <div><code className="bg-blue-200 px-1 rounded">new</code> - New/updated values</div>
-                                    <div><code className="bg-blue-200 px-1 rounded">sorting</code> - Sort parameters</div>
-                                </div>
-                            </div>
-                            <div className="mt-4 p-3 bg-green-50 rounded-lg">
-                                <h5 className="font-medium text-green-900 mb-1">Table Configuration:</h5>
-                                <p className="text-green-800 text-sm">Use <code className="bg-green-200 px-1 rounded">columnWidths</code> array to control table column proportions. Values should sum to 1.0 (e.g., [0.25, 0.2, 0.15, 0.4]).</p>
-                            </div>
-                            <div className="mt-4 p-3 bg-purple-50 rounded-lg">
-                                <h5 className="font-medium text-purple-900 mb-1">Best Practices:</h5>
-                                <ul className="text-purple-800 text-sm space-y-1">
-                                    <li>• <code className="bg-purple-200 px-1 rounded">parameters</code> - Define parameters directly in endpoint object (cleaner structure)</li>
-                                    <li>• <code className="bg-purple-200 px-1 rounded">category</code> - Group related parameters for better organization</li>
-                                    <li>• <code className="bg-purple-200 px-1 rounded">format</code> - Specify data format</li>
-                                    <li>• <code className="bg-purple-200 px-1 rounded">subsections</code> - Optional: Use only when you need additional tables/content</li>
-                                </ul>
-                            </div>
+
+                        <div className="mt-4 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                            <h5 className="font-semibold text-purple-900 mb-1">✨ Best Practices:</h5>
+                            <ul className="text-purple-800 text-sm space-y-1">
+                                <li>• <code className="bg-purple-200 px-1 rounded">parameters</code> - Define parameters directly in endpoint object (cleaner structure)</li>
+                                <li>• <code className="bg-purple-200 px-1 rounded">category</code> - Group related parameters for better organization</li>
+                                <li>• <code className="bg-purple-200 px-1 rounded">format</code> - Specify data format (e.g., "int32" for integers)</li>
+                                <li>• <code className="bg-purple-200 px-1 rounded">subsections</code> - Optional: Use only when you need additional tables/content</li>
+                            </ul>
                         </div>
                     </div>
                 )}
-
-                {/* Features Section */}
-                <div className="bg-white rounded-lg shadow-md p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                        ✨ Documentation Features
-                    </h3>
-                    <div className="grid md:grid-cols-2 gap-4">
-                        <div className="flex items-start">
-                            <svg
-                                className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            <div>
-                                <p className="font-medium text-gray-900 text-sm">
-                                    Complete API Reference
-                                </p>
-                                <p className="text-gray-600 text-xs mt-1">
-                                    All endpoints with detailed parameters and responses
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex items-start">
-                            <svg
-                                className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            <div>
-                                <p className="font-medium text-gray-900 text-sm">
-                                    Authentication Guide
-                                </p>
-                                <p className="text-gray-600 text-xs mt-1">
-                                    Security implementation and best practices
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex items-start">
-                            <svg
-                                className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            <div>
-                                <p className="font-medium text-gray-900 text-sm">
-                                    Code Examples
-                                </p>
-                                <p className="text-gray-600 text-xs mt-1">
-                                    Ready-to-use code snippets and examples
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex items-start">
-                            <svg
-                                className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            <div>
-                                <p className="font-medium text-gray-900 text-sm">
-                                    Error Handling
-                                </p>
-                                <p className="text-gray-600 text-xs mt-1">
-                                    Comprehensive error codes and troubleshooting
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     );
