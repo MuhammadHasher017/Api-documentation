@@ -691,12 +691,11 @@
             }
           ]
         }
-        
       ]
     },
     {
       "id": "some else",
-      "sections":[
+      "sections": [
         {
           "type": "section",
           "title": "Get Approval Statuses",
@@ -1692,5 +1691,6 @@
         }
       ]
     }
+ 
   ]
 }
